@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "windsor-ai-task"
+version = "0.1.0"
+description = "A Python project that fetches data from a CSV file hosted on Google Drive and returns it to the user in JSON format. The user can specify the CSV fields they want to fetch."
+authors = ["Artem Samoilov <samoylovartem07@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+loguru = "^0.7.0"
+pandas = "^2.0.2"
+gdown = "^4.7.1"
+pydantic = "^1.10.9"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.3.3"
+pytest = "^7.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
