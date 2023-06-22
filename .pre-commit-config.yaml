@@ -24,11 +24,3 @@ repos:
     rev: 6.0.0
     hooks:
       - id: flake8
-
-  - repo: local
-    hooks:
-      - id: pytest
-        name: pytest
-        entry: pytest
-        language: python
-        types: [python]

@@ -8,7 +8,6 @@ A Python project that fetches data from a CSV file hosted on Google Drive and re
 
 This project relies on the following Python libraries:
 
-- `requests` to handle HTTP requests.
 - `loguru` for logging and handling errors.
 - `pandas` for processing CSV data.
 - `gdown` for downloading files from Google Drive.
@@ -68,12 +67,9 @@ If all the tests pass, you will see an output similar to this:
 ======================================================= test session starts =======================================================
 platform darwin -- Python 3.11.0, pytest-7.3.2, pluggy-1.2.0
 rootdir: /Users/samoylovartem/Projects/python/windsor-ai-task
-collected 5 items                                                                                                                 
+collected 5 items
 
 test_data_fetcher.py .....                                                                                                  [100%]
 
 ======================================================== 5 passed in 0.52s ========================================================
 ```
-
-
-

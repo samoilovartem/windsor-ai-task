@@ -6,6 +6,7 @@ class DataFetcherConfig(BaseSettings):
     output_file_name: str = 'test_task_data.csv'
     json_indent_level: int = 4
     json_orient_format: str = 'records'
+    gdown_is_quite: bool = False
 
 
 data_fetcher_config = DataFetcherConfig()
