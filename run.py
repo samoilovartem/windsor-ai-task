@@ -14,7 +14,6 @@ parser.add_argument(
     type=str,
     help='fields to be fetched from CSV file (field_1,field_2,field_3, etc.)',
 )
-args = parser.parse_args()
 
 
 class DataFetcher:
@@ -43,7 +42,7 @@ class DataFetcher:
             gdown.download(
                 f'{self.config.gdrive_base_url}{self.file_id}',
                 self.output_file_name,
-                quiet=self.config.gdown_is_quite,
+                quiet=self.config.gdown_is_quiet,
             )
         except Exception as e:
             logger.warning(f'Error occurred while downloading the file: {e}')
@@ -59,17 +58,17 @@ class DataFetcher:
             logger.warning(f'Error occurred while reading the CSV file: {e}')
             return pd.DataFrame()
 
-    def convert_to_json(self, csv_data: pd.DataFrame) -> dict:
+    def convert_csv_data_to_dict(self, csv_data: pd.DataFrame) -> dict:
         """
-        Convert the read CSV data to JSON.
+        Convert the read CSV data to dictionary.
         """
         try:
-            json_data = json.loads(
-                csv_data.to_json(orient=self.config.json_orient_format)
-            )
-            return json_data
+            dict_data = csv_data.to_dict(orient=self.config.json_orient_format)
+            return dict_data
         except Exception as e:
-            logger.warning(f'Error occurred while converting dataframe to JSON: {e}')
+            logger.warning(
+                f'Error occurred while converting dataframe to dictionary: {e}'
+            )
             return {}
 
     def fetch_data(self, fields: str) -> dict:
@@ -79,13 +78,13 @@ class DataFetcher:
         self.download_file_from_google_drive()
         csv_data = self.read_csv_file(fields)
         if not csv_data.empty:
-            return self.convert_to_json(csv_data)
+            return self.convert_csv_data_to_dict(csv_data)
         else:
             return {}
 
 
-# Usage example:
 if __name__ == '__main__':
+    args = parser.parse_args()
     data_fetcher = DataFetcher(file_id='1zLdEcpzCp357s3Rse112Lch9EMUWzMLE')
     data = data_fetcher.fetch_data(args.fields)
     if data:

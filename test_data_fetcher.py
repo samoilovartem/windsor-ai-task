@@ -25,13 +25,13 @@ def test_read_nonexistent_csv_file(fetcher):
 
 def test_convert_to_json(fetcher):
     sample_data = pd.DataFrame({'column1': ['value1'], 'column2': ['value2']})
-    result = fetcher.convert_to_json(sample_data)
+    result = fetcher.convert_csv_data_to_dict(sample_data)
     assert result == [{'column1': 'value1', 'column2': 'value2'}]
 
 
 def test_convert_empty_dataframe_to_json(fetcher):
     empty_data = pd.DataFrame()
-    result = fetcher.convert_to_json(empty_data)
+    result = fetcher.convert_csv_data_to_dict(empty_data)
     assert result == []
 
 
